@@ -1,0 +1,9 @@
+/** NAVBAR **/
+.textCopyright{
+    padding: 3px;
+    position: fixed;
+    right: 0;
+    font-size: 20px;
+    background-color: #777777;
+    color: #FFFFFF;
+}

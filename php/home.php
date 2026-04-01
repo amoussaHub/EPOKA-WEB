@@ -19,7 +19,7 @@
             header("location: ../blocagePage.html?user=$id");
         } else {
             if ($page == "paiement") {
-                header("location: ../paiementFrais.html?user=$id");
+                header("location: paiementFraisController.php?user=$id");
             } else if ($page == "paramètrage"){
                 header("location: parametrageController.php?user=$id");
             }

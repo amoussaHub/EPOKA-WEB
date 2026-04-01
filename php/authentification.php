@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (!isset ($_POST["id"])) die ("ID absent");
     $id = $_POST["id"];
     if (!isset ($_POST["mdp"])) die ("Mot de passe absent");
@@ -17,7 +18,8 @@
         $res = $stmt -> fetch(PDO :: FETCH_ASSOC);
     
         if ($res != false) {
-            header("location: ../home.html?user=$id");
+            $_SESSION["connecte"] = $id;
+            header("location: ../home.html");
         } else {
             header("location: ../index.html?erreur=1");
         }

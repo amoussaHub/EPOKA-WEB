@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <p id="id" class="badge text-bg-success mt-2 mb-5">utilisateur n° <?= $_SESSION["id"] ?> connecté</p>
             <h1> Validation des missions de vos subordonnés</h1>
-            <div class="container-fluid ms-2 me-2">
+            <div class="container-fluid ms-2 me-2 mt-5">
                 <table class="table">
                 <thead>
                     <tr>
@@ -26,25 +26,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>@social</td>
-                    </tr>
-                    
+                    <?php 
+                        $numRow = 0;
+                        foreach ($resultat as $res):
+                            $numRow += 1; 
+                    ?>
+                        <tr>
+                            <th scope="row"><?= $numRow ?></th>
+                            <td><?= $res["nomSalarie"] ?></td>
+                            <td><?= $res["prenomSalarie"] ?></td>
+                            <td><?= $res["DateDebutMission"] ?></td>
+                            <td><?= $res["DateFinMission"] ?></td>
+                            <td><?= $res["nomVille"] ?></td>
+                            <?php if ($res["Valide"] == 0) : ?>
+                                <form action="homeController.php" method="post">
+                                    <td><input type="submit" name="btnValider" value="valider"></td>
+                                    <input type=hidden name="idMission" value="<?= $res["idMission"] ?>">
+                                </form>
+                            <?php endif; ?>
+                            <?php if ($res["Valide"] == 1 && $res["Payee"] == 0) : ?>
+                                <td>Validée</td>
+                            <?php endif; ?>
+                            <?php if ($res["Valide"] == 1 && $res["Payee"] == 1) : ?>
+                                <td>Validée, Remboursée</td>
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             </div>

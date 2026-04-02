@@ -3,7 +3,6 @@
     if (!isset($_SESSION["id"])) die ("ID user absent");
     $id = $_SESSION["id"];
   
-
     //variables header
     $btnValidationClass = "";
     $btnPaiementsFraisClass = "";

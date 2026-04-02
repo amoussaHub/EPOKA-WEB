@@ -9,38 +9,8 @@
         <script src="JavaScript/home.js"></script>
     </head>
     <body>
-        <!-- navbar -->
-        <nav class="navbar navbar-expand-lg bg-body-secondary">
-            <div class="container-fluid">
-                <form action="index.html" id="deconnexionForm" method="get">
-                    <a class="navbar-brand" id="deconnexion" href="#">Déconnexion</a>
-                    <input type="hidden" name="isDeco"  value="1"/>
-                </form>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <form action="php/home.php" id="gestionNavForm" method="post">
-                    <input type="hidden" id="id" name="id" value=""/>
-                    <input type="hidden" id="page" name="page" value=""/>
-                    <ul class="navbar-nav ms-5">
-                        <li class="nav-item me-3">
-                            <a class="nav-link active disabled" href="#" id="btnValidatioMission">Validation des missions</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link" href="#" id="btnPaiementFrais">Paiement des frais</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link" href="#" id="btnParamètrage">paramètrage</a>
-                        </li>
-                        <p class="textCopyright me-2 nav-item">Copyright 2026 Dy. AMOUSSA</p>
-                    </ul>
-                </form>
-                </div>
-            </div>
-        </nav>
         <div class="container-fluid">
-            <p id="user" class="badge text-bg-success mt-2 mb-5"></p>
+            <p id="id" class="badge text-bg-success mt-2 mb-5">utilisateur n° <?= $_SESSION["id"] ?> connecté</p>
             <h1> Validation des missions de vos subordonnés</h1>
             <div class="container-fluid ms-2 me-2">
                 <table class="table">

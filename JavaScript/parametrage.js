@@ -10,6 +10,7 @@ window.onload = function() {
         document.getElementById("message").innerHTML = "Ajout d'une nouvelle distance effectué";
     } else if (modifParam == 3) {
         document.getElementById("message").className = "alert alert-danger mt-2 mb-4";
-        document.getElementById("message").innerHTML = "la distance saisie existe déjà";
+        document.getElementById("message").innerHTML = "La distance saisie existe déjà";
     } 
+
 }

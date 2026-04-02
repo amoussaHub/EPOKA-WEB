@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <title>EPOKA Missions</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles/indexCss.css">
+        <link rel="stylesheet" href="../styles/indexCss.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-        <script src="JavaScript/blocagePage.js"></script>
+        <script src="../JavaScript/home.js"></script>
     </head>
     <body>
         <!-- navbar -->
         <nav class="navbar navbar-expand-lg bg-body-secondary">
             <div class="container-fluid">
-                <form action="index.html" id="deconnexionForm" method="get">
+                <form action="authentification.php" id="deconnexionForm" method="get">
                     <a class="navbar-brand" id="deconnexion" href="#">Déconnexion</a>
                     <input type="hidden" name="isDeco"  value="1"/>
                 </form>
@@ -20,17 +20,17 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                <form action="php/home.php" id="gestionNavForm" method="post">
-                    <input type="hidden" id="id" name="id" value=""/>
+                <form action="homeController.php" id="gestionNavForm" method="post">
+                    <input type="hidden" id="page" name="page" value=""/>
                     <ul class="navbar-nav ms-5">
                         <li class="nav-item me-3">
-                            <a class="nav-link active" href="home.html" id="btnValidatioMission">Validation des missions</a>
+                            <a class="nav-link <?= $btnValidationClass ?>" href="<?= $btnValidatioMissionLocation?>" id="btnValidatioMission">Validation des missions</a>
                         </li>
                         <li class="nav-item me-3">
-                            <a class="nav-link disabled" href="#" id="btnPaiementFrais">Paiement des frais</a>
+                            <a class="nav-link <?= $btnPaiementsFraisClass ?>" href="#" id="btnPaiementFrais">Paiement des frais</a>
                         </li>
                         <li class="nav-item me-3">
-                            <a class="nav-link disabled" href="#" id="btnParamètrage">paramètrage</a>
+                            <a class="nav-link <?= $btnParametrageClass ?>" href="#" id="btnParamètrage">paramètrage</a>
                         </li>
                         <p class="textCopyright me-2 nav-item">Copyright 2026 Dy. AMOUSSA</p>
                     </ul>
@@ -38,14 +38,5 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
-            <div class="col position-absolute top-50 start-50 translate-middle">
-                <p class="badge text-bg-danger mt-2" style="font-size: 32px;">Vous n'êtes pas autorisé</p><br>
-                <form action="home.html" id="retourHomeForm" method="get">
-                    <a href="#" id="btnRetour" class="mx-auto" style="text-decoration: none; font-size: 20px;"><p>Retour</p></a>
-                    <input type="hidden" name="user" id="user">
-                </form>
-            </div>
-        </div>
     </body>
 </html>

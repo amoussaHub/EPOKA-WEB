@@ -1,8 +1,16 @@
 <?php
+    session_start();
+
+    if (isset($_GET["isDeco"])) {
+        session_destroy();
+        header("location: ../index.html?isDeco=1");
+    }
+
     if (!isset ($_POST["id"])) die ("ID absent");
     $id = $_POST["id"];
     if (!isset ($_POST["mdp"])) die ("Mot de passe absent");
     $mdp = $_POST["mdp"];
+
     try {
         $pdo = new PDO("mysql:host=127.0.0.1;dbname=epoka", "root", "",
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -17,7 +25,10 @@
         $res = $stmt -> fetch(PDO :: FETCH_ASSOC);
     
         if ($res != false) {
-            header("location: ../home.html?user=$id");
+            $_SESSION["id"] = $id;
+            $_SESSION["peutValider"] = $res["peutValider"];
+            $_SESSION["peutPayer"] = $res["peutPayer"];
+            header("location: homeController.php");
         } else {
             header("location: ../index.html?erreur=1");
         }

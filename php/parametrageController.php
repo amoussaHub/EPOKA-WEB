@@ -1,7 +1,15 @@
 <?php
-    if (!isset($_GET["user"]) && !isset($_POST["user"])) die ("ID user absent");
-    if (isset ($_GET["user"]))$user = $_GET["user"];
-    if(isset ($_POST["user"]))$user = $_POST["user"];
+    session_start();
+    if (!isset($_SESSION["id"])) die ("ID user absent");
+    $id = $_SESSION["id"];
+  
+
+    //variables header
+    $btnValidationClass = "";
+    $btnPaiementsFraisClass = "";
+    $btnParametrageClass = "disabled";
+    $btnValidatioMissionLocation = "homeController.php";
+    
     try {
         $pdo = new PDO("mysql:host=127.0.0.1;dbname=epoka", "root", "",
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -16,7 +24,8 @@
         $stmt2 -> execute ();
         $parametres = $stmt2 -> fetch(PDO :: FETCH_ASSOC);
 
-        $req3 = "SELECT * FROM distance";
+        //$req3 = "SELECT * FROM distance";
+        $req3 = "SELECT v1.nomVille AS ville1, v2.nomVille AS ville2, distance FROM distance INNER JOIN Ville v1 ON distance.idVille1 = v1.idVille INNER JOIN Ville v2 ON distance.idVille2 = v2.idVille;";
         $stmt3 = $pdo -> prepare ($req3);
         $stmt3 -> execute ();
         $distances = $stmt3 -> fetchAll(PDO :: FETCH_ASSOC);
@@ -31,7 +40,7 @@
             $stmt4 -> bindParam (":indemniteHebergement", $indemniteHebergement);
             $stmt4 -> execute ();
 
-            header("location: parametrageController.php?modifParam=1&user=$user");
+            header("location: parametrageController.php?modifParam=1");
         }
         //die ("dsfsrf");
         if (isset($_POST["gestionDistance"])) {
@@ -61,15 +70,14 @@
                 
                 $stmt5 -> execute ();
 
-                header("location: parametrageController.php?modifParam=2&user=$user");
+                header("location: parametrageController.php?modifParam=2");
             } else {
-                header("location: parametrageController.php?modifParam=3&user=$user");
+                header("location: parametrageController.php?modifParam=3");
             }
             
         }
 
-        include '../header.html';
-
+        include '../header.php';
         include '../paramétrage.php'; 
 
     } catch (Exception $e) {

@@ -1,3 +1,6 @@
+body {
+    padding: 10px;
+}
 /** NAVBAR **/
 .textCopyright{
     padding: 3px;
@@ -7,3 +10,4 @@
     background-color: #777777;
     color: #FFFFFF;
 }
+

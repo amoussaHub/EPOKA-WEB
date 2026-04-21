@@ -40,19 +40,22 @@
                             <td><?= $res["DateDebutMission"] ?></td>
                             <td><?= $res["DateFinMission"] ?></td>
                             <td><?= $res["nomVille"] ?></td>
-                            <td><?= calculRemboursement($res["idVille1"], $res["idVille2"], $res["DateDebutMission"], $res["DateFinMission"]); ?></td>
-                            <!--<?php if ($res["Valide"] == 0) : ?>
-                                <form action="homeController.php" method="post">
-                                    <td><input type="submit" name="btnValider" value="valider"></td>
+                            <td><?= calculRemboursement($res["distance"], $res["DateDebutMission"], $res["DateFinMission"]); ?></td>
+                            <?php if ($res["Payee"] == 0 && $res["distance"] == null) : ?>
+                                <form action="paiementFraisController.php" method="post">
+                                    <td><input type="submit" name="btnRembourser" value="Rembourser" disabled></td>
                                     <input type=hidden name="idMission" value="<?= $res["idMission"] ?>">
                                 </form>
                             <?php endif; ?>
-                            <?php if ($res["Valide"] == 1 && $res["Payee"] == 0) : ?>
-                                <td>Validée</td>
+                            <?php if ($res["Payee"] == 0 && $res["distance"] != null) : ?>
+                                <form action="paiementFraisController.php" method="post">
+                                    <td><input type="submit" name="btnRembourser" value="Rembourser" ></td>
+                                    <input type=hidden name="idMission" value="<?= $res["idMission"] ?>">
+                                </form>
                             <?php endif; ?>
-                            <?php if ($res["Valide"] == 1 && $res["Payee"] == 1) : ?>
-                                <td>Validée, Remboursée</td>
-                            <?php endif; ?>-->
+                            <?php if ($res["Payee"] == 1) : ?>
+                                <td>Remboursée</td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

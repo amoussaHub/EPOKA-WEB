@@ -15,7 +15,7 @@
         $pdo = new PDO("mysql:host=127.0.0.1;dbname=epoka", "root", "",
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-        $req = "SELECT * FROM salarie WHERE idSalarie = :id AND mdpSalarie = :mdp";
+        $req = "SELECT * FROM salarie WHERE idSalarie = :id AND mdpSalarie = SHA2(:mdp, 256)";
 
         $stmt = $pdo -> prepare ($req);
         $stmt -> bindParam (":id", $id);
